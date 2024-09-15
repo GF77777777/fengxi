@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fengxi Shop Monthly Challenge</title>
+    <style>
+     @import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
+     @import url('https://fonts.googleapis.com/css2?family=Fascinate+Inline&family=Protest+Guerrilla&display=swap');
+     @import url('https://fonts.googleapis.com/css2?family=Fascinate+Inline&family=Playwrite+CU:wght@100..400&family=Protest+Guerrilla&display=swap');
+     @import url('https://fonts.googleapis.com/css2?family=Ewert&display=swap');
+     @import url('https://fonts.googleapis.com/css2?family=Ewert&family=Lilita+One&display=swap');
+            
+        body {
+            font-family: Arial, sans-serif;
+            background: rgb(238,174,202);
+            background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: rgb(255, 133, 229);
+            text-align: center;
+                font-family: "Protest Guerrilla", sans-serif;
+                font-weight: 400;
+                font-style: normal;
+              
+              
+        }
+        p{
+            font-family: "Playwrite CU", cursive;
+        }
+        h2 {
+            color: rgb(255, 133, 229);
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgb(255, 133, 229);
+            padding-bottom: 10px;
+            font-family: "Fascinate Inline", system-ui;
+        }
+        .prizes {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .prize-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 30%;
+            margin: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .prize-card img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+        .prize-card-content {
+            padding: 15px;
+            text-align: center;
+        }
+        .prize-card h3 {
+            margin: 0;
+            color: rgb(238,174,202);
+            font-size: 1.2em;
+        }
+        .prize-card p {
+            margin: 10px 0;
+        }
+        .prize-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .prize-card:hover img {
+            transform: scale(1.1);
+        }
+        .countdown {
+            font-size: 1.5em;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgb(255, 133, 229);
+            background: radial-gradient(circle, rgba(255, 133, 229, 1) 0%, rgba(238,174,202,1) 100%);
+            color: #fff;
+            border-radius: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-align: center;
+            position: relative;
+        }
+        .countdown span {
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .leaderboard {
+            margin: 20px 0;
+        }
+        .leaderboard h2 {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .leaderboard ul {
+            list-style: none;
+            padding: 0;
+            font-size: 1.2em;
+        }
+        .leaderboard ul li {
+            background: rgba(255, 255, 255, 0.8);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 133, 229, 0.5);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-weight: bold;
+            transition: background 0.3s ease;
+            cursor: pointer;
+            font-family: "Ewert", serif;
+            
+        }
+        .leaderboard ul li:hover {
+            background: rgba(255, 133, 229, 0.2);
+        }
+        .leaderboard ul li span {
+            color: rgb(255, 133, 229);
+        }
+        .rules ul {
+            list-style: none;
+            padding: 0;
+            font-family: "Lilita One", sans-serif;
+        }
+        .rules ul li {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 133, 229, 0.5);
+            font-family: "Lilita One", sans-serif;
+        }
+        /* Profile Modal Styles */
+        .profile-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .profile-modal-content {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+        }
+        .profile-modal img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        .profile-modal h3 {
+            margin: 10px 0;
+            color: rgb(255, 133, 229);
+            font-family: "Ewert", serif;
+        }
+        .profile-modal p {
+            font-size: 1.1em;
+            font-family: "Ewert", serif;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgb(255, 133, 229);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        .close-modal:hover {
+            background: rgb(238,174,202);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fengxi Shop Monthly Challenge</h1>
+        <p>Hi everyone, Fengxi Shop wants to announce our official monthly challenge!</p>
+        
+        <h2>Prizes</h2>
+        <div class="prizes">
+            <div class="prize-card">
+                <img src="./assets/Fengxi shop (1).jpg" alt="100 Feng Prize">
+                <div class="prize-card-content">
+                    <h3>100 Feng</h3>
+                    <p>One unique notebook</p>
+                </div>
+            </div>
+            <div class="prize-card">
+                <img src="./assets/Fengxi shop (1).jpg" alt="200 Feng Prize">
+                <div class="prize-card-content">
+                    <h3>200 Feng</h3>
+                    <p>One more unique notebook</p>
+                </div>
+            </div>
+            <div class="prize-card">
+                <img src="./assets/Fengxi shop (1).jpg" alt="300 Feng Prize">
+                <div class="prize-card-content">
+                    <h3>300 Feng</h3>
+                    <p>Even more unique notebook</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Countdown</h2>
+        <div id="countdown" class="countdown">
+            <span id="countdown-time"></span>
+        </div>
+
+        <h2>Participant Leaderboard</h2>
+        <div class="leaderboard" id="leaderboard">
+            <ul>
+                <li data-participant="1" onclick="showProfile('Alice', './assets//Fengxi shop (1).jpg', 'Alice has collected 250 Feng.')"><span>1. Alice</span> - 250 Feng</li>
+                <li data-participant="2" onclick="showProfile('Bob', './assets//Fengxi shop (1).jpg', 'Bob has collected 200 Feng.')"><span>2. Bob</span> - 200 Feng</li>
+                <li data-participant="3" onclick="showProfile('Carol', './assets//Fengxi shop (1).jpg', 'Carol has collected 150 Feng.')"><span>3. Carol</span> - 150 Feng</li>
+                <!-- Add more participants as needed -->
+            </ul>
+        </div>
+
+        <h2>Challenge Rules</h2>
+        <div class="rules">
+            <p>To participate, you must collect Feng by:</p>
+            <ul>
+                <li>Following us on YouTube</li>
+                <li>Following us on TikTok</li>
+                <li>Putting our channel link in your bio</li>
+                <li>Reacting to our posts on Telegram and commenting</li>
+                <li>Promoting our channel in your story</li>
+                <li>Adding people to the channel</li>
+                <li>Ordering at least one item from our channel</li>
+            </ul>
+            <p>You must collect 100 Feng in one month to win a prize.</p>
+            <p>This challenge is held every month. Good luck!</p>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profile-modal" class="profile-modal">
+        <div class="profile-modal-content">
+            <button class="close-modal" onclick="closeProfile()">×</button>
+            <img id="profile-pic" src="" alt="Profile Picture">
+            <h3 id="profile-name"></h3>
+            <p id="profile-info"></p>
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer
+        const countdownDate = new Date();
+        countdownDate.setMonth(countdownDate.getMonth() + 1); // Set to next month
+        countdownDate.setDate(1); // Start at the beginning of the month
+        countdownDate.setHours(0, 0, 0, 0); // Start at midnight
+
+        function updateCountdown() {
+            const now = new Date();
+            const distance = countdownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown-time').innerHTML = 
+                `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (distance < 0) {
+                clearInterval(interval);
+                document.getElementById('countdown-time').innerHTML = "EXPIRED";
+            }
+        }
+
+        const interval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Profile Modal
+        function showProfile(name, picUrl, info) {
+            document.getElementById('profile-name').innerText = name;
+            document.getElementById('profile-pic').src = picUrl;
+            document.getElementById('profile-info').innerText = info;
+            document.getElementById('profile-modal').style.display = 'flex';
+        }
+
+        function closeProfile() {
+            document.getElementById('profile-modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
